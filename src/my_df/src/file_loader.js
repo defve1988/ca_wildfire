@@ -5,32 +5,37 @@ import * as d3 from 'd3'
 // can return data is update = false
 
 export default class filer_loader {
-    constructor(df) {
+    constructor(df = [], fetch = "") {
         this.df = df
+        if (fetch !== "") {
+            let file = fetch.split(".").pop()
+            if (file == "csv") this.fetch_csv(fetch)
+            if (file == "json") this.fetch_json(fetch)
+        }
     }
 
     // 1. local json file can directly use import
     // e.g: import json from '@/assets/json/data.json'
 
     // 2. online data
-    async fetch_json(file, update=true) {
+    async fetch_json(file, update = true) {
         const response = await d3.json(file)
         if (update) this.df = response
         else return response
     }
-    async fetch_csv(file, update=true) {
+    async fetch_csv(file, update = true) {
         const response = await d3.csv(file)
         if (update) this.df = response
         else return response
     }
 
     // 3. uploaded file
-    async load_json(file, update=true) {
+    async load_json(file, update = true) {
         let response = await this.readFileAsync(file);
         if (update) this.df = JSON.parse(response)
         else return JSON.parse(response)
     }
-    async load_csv(file, update=true) {
+    async load_csv(file, update = true) {
         let response = await this.readFileAsync(file);
         let content = await this.convert_csv(response);
         if (update) this.df = content

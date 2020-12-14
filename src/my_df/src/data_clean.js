@@ -4,8 +4,8 @@ import file_loader from "./file_loader"
 // perform data selection, grouping, averaging, mostly like pandas
 // will effect on the df, not df_filter
 export default class data_clean extends file_loader {
-    constructor(df) {
-        super(df)
+    constructor(df=[],fetch="") {
+        super(df,fetch)
     }
 
     // contact df

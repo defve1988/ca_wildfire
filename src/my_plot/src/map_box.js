@@ -20,7 +20,7 @@ export default class extends plotly_func {
         this.clear_image()
     }
 
-    async gen_dots(data, show_text = null, update=true, plot = true) {
+    async gen_dots(data, show_text = null, update = true, plot = true) {
         // gen one group of dots 
         var trace = [{
             type: "scattermapbox",
@@ -57,7 +57,40 @@ export default class extends plotly_func {
         }
         if (update) this.trace = this.trace.concat(trace)
         if (plot) this.plot_new()
-        console.log(trace)
+        // console.log(trace)
         return trace
     }
+
+    async plot_map_scatter(data, update = true) {
+        var trace = [];
+        trace = [{
+            type: "scattermapbox",
+            name: data.map((x) => x.name),
+            text: data.map((x) => x.text),
+            lon: data.map((x) => x.lon),
+            lat: data.map((x) => x.lat),
+            hovertemplate: '%{text}<br>' +
+                '%{lat:.2f}, %{lon:.2f}' +
+                '<extra></extra>',
+            hoverlabel: {
+                bgcolor: "rgba(70,70,70,1)"
+            },
+            marker: {
+                color: data.map((x) => x.color),
+                size: data.map((x) => x.size),
+                opacity: data.map((x) => x.op),
+            },
+            showlegend: false,
+        },];
+        if (update) {
+            this.trace = trace
+            this.add_trace()
+            this.del_trace(0)
+        }
+        else {
+            this.trace = this.trace.concat(trace)
+            this.plot_new()
+        }
+    }
+
 }

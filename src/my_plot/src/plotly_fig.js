@@ -1,4 +1,3 @@
-import e from "express"
 import plotly_func from "./plotly_func"
 
 export default class extends plotly_func {
@@ -16,7 +15,8 @@ export default class extends plotly_func {
     constructor(div, fig_type, plot_type) {
         super(div, fig_type)
         this.plot_type = plot_type
-        this.set_plot_func()
+        // this.set_plot_func()
+
         this.set_fig()
 
     }
@@ -32,9 +32,10 @@ export default class extends plotly_func {
         }
     }
 
-    gen_hist(data, max_y, bin_num = 100, update = true, plot = true) {
+    gen_hist(data, max_y, bin_num = 100) {
         var trace = []
-        data.forEach((d, index) => {
+        data.forEach((d,) => {
+            var color_index = Math.floor(Math.random() * Math.floor(8))
             trace.push({
                 x: d.x,
                 name: d.y_name,
@@ -46,22 +47,47 @@ export default class extends plotly_func {
                 autobinx: true,
                 histnorm: "counts",
                 marker: {
-                    color: this.hex2rgba(this.color_theme[(index) % 9], 0.5),
+                    color: this.hex2rgba(this.color_theme[color_index], 0.5),
                     line: {
-                        color: this.hex2rgba(this.color_theme[(index) % 9], 1),
+                        color: this.hex2rgba(this.color_theme[color_index], 1),
                         width: 0.5
                     }
                 },
-                opacity: 0.7,
+                opacity: 0.8,
                 type: "histogram",
             })
         })
-        if (update) this.trace = this.trace.concat(trace)
-        if (plot) this.plot_new()
-        console.log(trace)
-        return trace
+        this.trace = trace
+        this.plot_new()
+        // if (update) this.trace = this.trace.concat(trace)
+        // if (plot) this.plot_new()
+        // console.log(trace)
+        // return trace
     }
 
+    gen_scatter(data) {
+        var trace = []
+        data.forEach((d,) => {
+            var color_index = Math.floor(Math.random() * Math.floor(8))
+            trace.push({
+                x: d.x,
+                y: d.y,
+                type: 'scatter',
+                mode: 'markers',
+                name: d.y_name,
+                marker: {
+                    size: 6,
+                    color: this.hex2rgba(this.color_theme[color_index], 0.8)
+                },
+            })
+        })
+        this.trace = trace
+        this.plot_new()
+        // if (update) this.trace = this.trace.concat(trace)
+        // if (plot) this.plot_new()
+        // console.log(trace)
+        // return trace
+    }
 
     gen_line() {
 
@@ -75,7 +101,7 @@ export default class extends plotly_func {
                 r: new Array(16).fill(0),
                 theta: d,
                 type: "barpolar"
-            }, ]
+            },]
         }
         else trace = data
 

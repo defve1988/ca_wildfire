@@ -103,6 +103,7 @@ export default class {
         this.div = div
         this.fig_type = fig_type
         this.trace = []
+
         // this.set_fig()
     }
 
@@ -162,6 +163,7 @@ export default class {
     }
 
     add_trace(trace = this.trace) {
+        // console.log(trace)
         Plotly.addTraces(this.div, trace);
     }
 

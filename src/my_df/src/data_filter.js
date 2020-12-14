@@ -11,8 +11,8 @@ import {
 
 // perform data selection, grouping, averaging, mostly like pandas
 export default class data_filter extends data_clean {
-    constructor(df) {
-        super(df)
+    constructor(df=[],fetch="") {
+        super(df,fetch)
     }
 
     // TODO support general functions

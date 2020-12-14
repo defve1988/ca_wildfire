@@ -19,17 +19,17 @@ import bar_race from "./src/bar_race"
 // }
 
 export default class {
-    constructor(plot_config) {
+    init_config(plot_config){
         this.plot_config = plot_config
-        var viz = plot_config.viz_type
-        var div = plot_config.div
-        var fig_type = plot_config.fig_type
-        var layout = plot_config.layout
-        var config = plot_config.config
+        var viz = this.plot_config.viz_type
+        var div = this.plot_config.div
+        var fig_type = this.plot_config.fig_type
+        var layout = this.plot_config.layout
+        var config = this.plot_config.config
 
         switch (viz) {
             case "plotly":
-                var plot_type = plot_config.plot_type
+                var plot_type = this.plot_config.plot_type
                 this.plot_obj = new plotly_fig(div, fig_type, plot_type)
                 this.plot_obj.set_layout(layout)
                 this.plot_obj.set_config(config)
@@ -43,7 +43,6 @@ export default class {
                 this.plot_obj = new bar_race(plot_config)
                 break
         }
-
     }
 
 }
