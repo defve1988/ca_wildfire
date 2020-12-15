@@ -32,9 +32,18 @@
           </v-col>
 
           <v-col cols="5" class="pa-0">
-            <v-row>
+            <!-- <v-row>
               <v-col>
                 <DateSlider :card_height="450" :date_range="date_range" />
+              </v-col>
+            </v-row> -->
+
+            <v-row>
+              <v-col>
+                <BarCard 
+                  :card_height="450"
+                  :selectors="ui_control.bar_selector"
+                  :plot_height="415" />
               </v-col>
             </v-row>
 
@@ -65,6 +74,7 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+// import Bar_card from './components/core/bar_card.vue';
 
 export default {
   name: "App",
@@ -78,11 +88,11 @@ export default {
     MapCard: () => import("@/components/core/map_card"),
     HistCard: () => import("@/components/core/hist_card"),
     ScatterCard: () => import("@/components/core/scatter_card"),
-    // BarCard: () => import("@/components/core/bar_card"),
+    BarCard: () => import("@/components/core/bar_card"),
 
     AppBar: () => import("@/components/common/app_bar"),
     InforDialog: () => import("@/components/common/infor_dialog"),
-    Footer: () => import("@/components/common/footer"),
+    Footer: () => import("@/components/common/footer")
   },
   computed: {
     ...mapState({

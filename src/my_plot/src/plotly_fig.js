@@ -72,12 +72,38 @@ export default class extends plotly_func {
             trace.push({
                 x: d.x,
                 y: d.y,
+                text:d.text,
                 type: 'scatter',
                 mode: 'markers',
                 name: d.y_name,
                 marker: {
                     size: 6,
                     color: this.hex2rgba(this.color_theme[color_index], 0.8)
+                },
+            })
+        })
+        this.trace = trace
+        this.plot_new()
+        // if (update) this.trace = this.trace.concat(trace)
+        // if (plot) this.plot_new()
+        // console.log(trace)
+        // return trace
+    }
+
+    gen_bar(data) {
+        var trace = []
+        data.forEach((d,) => {
+            var color_index = Math.floor(Math.random() * Math.floor(8))
+            trace.push({
+                x: d.x,
+                y: d.y,
+                type: 'bar',
+                marker: {
+                    color: this.hex2rgba(this.color_theme[color_index], 0.5),
+                    line: {
+                        color: this.hex2rgba(this.color_theme[color_index], 1),
+                        width: 0.5
+                    }
                 },
             })
         })

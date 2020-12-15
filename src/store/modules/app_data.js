@@ -185,15 +185,44 @@ const mutations = {
       var temp = {
         x:  row[x.cols],
         y: row[y.cols],
+        text:row.Name
       }
       res.push(temp)
     })
     state.scatter_trace = [{
       x: res.map(x => x.x),
       y: res.map(x => x.y),
-      y_name: x.text + '-' + y.text
+      y_name: x.text + '-' + y.text,
+      text:res.map(x => x.text),
     }]
+  },
+
+  GENE_BAR(state, ytab) {
+    var res = []
+    var yselect = ytab.y
+
+    state.year_range.forEach(year => {
+      var y = 0
+
+      state.data.df.forEach(row => {
+        if (row.ArchiveYear == year) {
+          y = y + row[yselect.cols]
+        }
+      })
+      res.push({
+        x: year,
+        y: y
+      })
+    })
+    console.log(res)
+    state.bar_trace = [{
+      x: res.map(x => x.x),
+      y: res.map(x => x.y)
+    }]
+    // state.bar_trace.max_y = max_y
+    console.log(state.bar_trace)
   }
+
 };
 
 export default {

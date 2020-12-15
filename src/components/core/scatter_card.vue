@@ -2,7 +2,7 @@
   <v-hover v-slot:default="{ hover }">
     <v-card class="ma-0 pa-0" :height="card_height" :elevation="hover ? 4 : 1">
       <v-system-bar tile class="py-1 px-2 secondary" dark>
-        Histogram
+        Scatter Plot
         <v-spacer></v-spacer>
         <v-menu top offset-x left open-on-hover>
           <template v-slot:activator="{ on, attrs }">

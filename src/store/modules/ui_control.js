@@ -7,21 +7,22 @@ const state = {
             col: "AcresBurned",
             func: "count",
             val: null,
-            text_color: "pink--text text--darken-1"
+            text_color: ""
         },
         {
             text: "Major Incidents",
             col: "MajorIncident",
             func: "sum",
             val: null,
-            text_color: "pink--text text--darken-1",
+            text_color: "",
         },
+        
         {
             text: "Acres Burned",
             col: "AcresBurned",
             func: "sum",
             val: null,
-            text_color: "",
+            text_color: "red--text text--darken-1",
         },
         {
             text: "Days Burned",
@@ -35,21 +36,21 @@ const state = {
             col: "PersonnelInvolved",
             func: "sum",
             val: null,
-            text_color: "",
+            text_color: "purple--text text--darken-1",
         },
         {
             text: "Injuries",
             col: "Injuries",
             func: "sum",
             val: null,
-            text_color: ""
+            text_color: "orange--text text--darken-1"
         },
         {
             text: "Fatalities",
             col: "Fatalities",
             func: "sum",
             val: null,
-            text_color: "",
+            text_color: "brown--text text--darken-1",
         },
         {
             text: "Structures Destroyed",
@@ -89,16 +90,16 @@ const state = {
             text: "Acres Burned",
             cols: ["AcresBurned"],
             method: "sum",
-            color: "red",
+            color: "#E53935",
         },
         {
             text: "Personnel Involved",
             cols: ["PersonnelInvolved"],
             method: "sum",
-            color: "#4527A0",
+            color: "#8E24AA",
         },
-        { text: "Injuries", cols: ["Injuries"], method: "sum", color: "#D84315" },
-        { text: "Fatalities", cols: ["Fatalities"], method: "sum", color: "#FF1744" },
+        { text: "Injuries", cols: ["Injuries"], method: "sum", color: "#FB8C00" },
+        { text: "Fatalities", cols: ["Fatalities"], method: "sum", color: "#6D4C41" },
         {
             text: "Structures Involved",
             cols: [
@@ -111,6 +112,43 @@ const state = {
             color: "#3E2723",
         },
     ],
+
+    bar_selector: {
+        tabs: [
+            {
+                text: "Acres Burned",
+                cols: "AcresBurned",
+                color: "red",
+            },
+            {
+                text: "Days Burned",
+                cols: "last_time",
+                color: "red",
+            },
+            {
+                text: "Personnel Involved",
+                cols: "PersonnelInvolved",
+                color: "red",
+            },
+            { text: "Injuries", cols: "Injuries", color: "red" },
+            {
+                text: "Fatalities",
+                cols: "Fatalities",
+                color: "red",
+            },
+            {
+                text: "Structures Destroyed",
+                cols: "StructuresDestroyed",
+                color: "red",
+            },
+            {
+                text: "Structures Damaged",
+                cols: "StructuresDamaged",
+                color: "red",
+            },
+        ],
+    },
+
     hist_selector: {
         tabs: [
             {
