@@ -69,7 +69,7 @@ const state = {
     ],
     auto_list: {
         height: 300,
-        show: false,
+        show: true,
         sort_by: [
             { text: "Acres Burned", col: "AcresBurned" },
             { text: "Started Date", col: "Started" },
